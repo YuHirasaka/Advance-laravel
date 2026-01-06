@@ -73,7 +73,7 @@ class AuthorController extends Controller
 
     public function relate(){
         $hasItems = Author::has('book')->get();
-        $noItems = Author::doesntHave('book')->get();
+        $noItems = Author::has('book', '<', 1)->get();
         $param = ['hasItems' => $hasItems, 'noItems' => $noItems];
         return view('author.index', $param);
     }
